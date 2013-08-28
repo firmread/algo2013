@@ -32,9 +32,8 @@ e) multiple xenos
 
 make a series of xeno objects which follow the mouse, each at different rates. give them slightly different colors so that you can perceive them as independent objects. you will have to modify the rectangle object so that they can have unique colors.
 
-bonus homeworks
-
-note this is more advanced work, for people who blitz throught these first examples. everyone should try to do the advanced work but I'll typically add extra / harder problems at the end
+Bonus homework - 
+This is advanced, but take a shot!
 
 f) multiple xenos trail
 
