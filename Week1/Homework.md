@@ -4,8 +4,6 @@ Non-code:
 
 Make a flip book.  Try to use a sketchbook that has slightly thicker paper, it should feel satisfying to flip through!
 
-Make three separate recordings with a stationary camera of a scene with interesting motion.  For each one, pick a specific point and track it over time and then draw out it's motion path.  Try to find interesting scenes with interesting organic motion and or rythmic or repeating patterns.
-
 Code:
 
 Create a github account of you don't have one already and create a repo for the class that you'll use to submit your homework.  Name it as follows, lastname_algo2013 and then add my github as a collaborator (cwhitney).  To do so, go to your repo, click "Settings" on the right-hand side, and then click collaborators on the right.
