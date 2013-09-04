@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/charlie/Documents/Development/_libs/cpp/of_v0.8.0_osx_release/algo2012/week1/0_rectangleClass/src/main.cpp \
+  /Users/charlie/Documents/Development/_libs/cpp/of_v0.8.0_osx_release/algo2013/Week1/0_rectangleClass/src/main.cpp \
   ../../../libs/openFrameworks/ofMain.h \
   ../../../libs/openFrameworks/utils/ofConstants.h \
   ../../../libs/glew/include/GL/glew.h \
