@@ -2,17 +2,38 @@
 
 //--------------------------------------------------------------
 void testApp::setup(){
+	
+	ofSetVerticalSync(true);
+	
+	ofBackground(0,0,0);
+	
+	ofSetCircleResolution(100);
+
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
-    myBall.update();
+	
+	
+	
+
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
-    myBall.draw();
-    ofPoint myPoint;
+	
+	
+	float modulator = ofMap( sin(ofGetElapsedTimef()*12.7), -1, 1, 0, 1);
+	
+	float xpos		= ofMap( sin(ofGetElapsedTimef()*3) * modulator, -1, 1, 0, ofGetWidth());
+	
+	
+	ofSetColor(255,255,255);
+	
+	ofRect(xpos, 100, 20,20);
+	
+	
+
 }
 
 //--------------------------------------------------------------
@@ -50,12 +71,3 @@ void testApp::windowResized(int w, int h){
 
 }
 
-//--------------------------------------------------------------
-void testApp::gotMessage(ofMessage msg){
-
-}
-
-//--------------------------------------------------------------
-void testApp::dragEvent(ofDragInfo dragInfo){ 
-
-}

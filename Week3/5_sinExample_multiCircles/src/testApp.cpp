@@ -2,17 +2,45 @@
 
 //--------------------------------------------------------------
 void testApp::setup(){
+	
+	ofSetVerticalSync(true);
+	
+	ofBackground(0,0,0);
+	
+	ofSetCircleResolution(100);
+
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
-    myBall.update();
+	
+	
+	
+
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
-    myBall.draw();
-    ofPoint myPoint;
+	
+	float xorig = ofGetWidth()/2;
+	float yorig = ofGetHeight()/2;
+	
+	for (int i = 0; i < 20; i++){
+	
+		float radius = 50 + i * 20;
+		float angle = ofGetElapsedTimef() * (1 + i / 10.0);
+		float x = xorig + radius * cos(angle);
+		float y = yorig + radius * -sin(angle);
+		
+		ofSetRectMode(OF_RECTMODE_CENTER);
+		ofSetColor(255,255,255);
+		ofRect(x,y,10,10);
+	
+	}	
+		
+	
+	
+
 }
 
 //--------------------------------------------------------------
@@ -50,12 +78,3 @@ void testApp::windowResized(int w, int h){
 
 }
 
-//--------------------------------------------------------------
-void testApp::gotMessage(ofMessage msg){
-
-}
-
-//--------------------------------------------------------------
-void testApp::dragEvent(ofDragInfo dragInfo){ 
-
-}

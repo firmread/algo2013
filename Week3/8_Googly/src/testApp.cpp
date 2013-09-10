@@ -2,17 +2,27 @@
 
 //--------------------------------------------------------------
 void testApp::setup(){
+    ofBackground(255);
+    
+    ofSetCircleResolution(100);
+    
+    leftEye.pos = ofPoint( ofGetWindowWidth()/2 - 75, ofGetWindowHeight() * 0.5 );
+    rightEye.pos = ofPoint( ofGetWindowWidth()/2 + 75, ofGetWindowHeight() * 0.5 );
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
-    myBall.update();
+    ofPoint mousePos( mouseX, mouseY );
+    
+    leftEye.mousePos = mousePos;
+    rightEye.mousePos = mousePos;
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
-    myBall.draw();
-    ofPoint myPoint;
+
+    leftEye.draw();
+    rightEye.draw();    
 }
 
 //--------------------------------------------------------------

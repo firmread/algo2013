@@ -2,17 +2,55 @@
 
 //--------------------------------------------------------------
 void testApp::setup(){
+    boxRadius = 200.0;
+    
+    ballPos = ofVec3f(0.0, 0.0, 0.0);
+    ballVel = ofVec3f( ofRandomf(), ofRandomf(), ofRandomf() );
+    
+    ballVel *= 5.0;
+    
+    ofBackground(0);
+    
+    ofEnableAlphaBlending();
+    
+    mBox = ofBoxPrimitive( boxRadius*2, boxRadius*2, boxRadius*2 );
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
-    myBall.update();
+    
+    ballPos += ballVel;
+    
+    if( ballPos.x > boxRadius || ballPos.x < -boxRadius ){
+        ballVel.x *= -1;
+    }
+    
+    if( ballPos.y > boxRadius || ballPos.y < -boxRadius ){
+        ballVel.y *= -1;
+    }
+    
+    if( ballPos.z > boxRadius || ballPos.z < -boxRadius ){
+        ballVel.z *= -1;
+    }
+    
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
-    myBall.draw();
-    ofPoint myPoint;
+    
+    ofPushMatrix();{
+        ofSetColor(255, 255, 255, 255);
+        
+        ofTranslate( ofGetWindowSize() / 2.0 );
+        ofDrawSphere( ballPos.x, ballPos.y, ballPos.z, 20 );
+        
+        ofSetColor( 255, 255, 255, 255*0.2 );
+//        ofDrawBox(0, 0, 0, boxRadius*2.0);
+        mBox.getMesh().drawWireframe();
+//        mBox.draw();
+        
+        
+    }ofPopMatrix();
 }
 
 //--------------------------------------------------------------

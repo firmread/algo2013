@@ -2,17 +2,31 @@
 
 //--------------------------------------------------------------
 void testApp::setup(){
+	
+	ofSetVerticalSync(true);
+	
+	ofBackground(0,0,0);
+	
+	ofSetCircleResolution(100);
+
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
-    myBall.update();
+	
+	
+	
+
 }
 
 //--------------------------------------------------------------
-void testApp::draw(){
-    myBall.draw();
-    ofPoint myPoint;
+void testApp::draw(){    
+	
+	float sinOfTime = sin( ofGetElapsedTimef() * 2 );
+	float sinOfTimeMapped = ofMap( sinOfTime, -1, 1, 50, 80);
+
+	ofSetColor(255, 255, 255);
+	ofCircle(400,400, sinOfTimeMapped);
 }
 
 //--------------------------------------------------------------
@@ -50,12 +64,3 @@ void testApp::windowResized(int w, int h){
 
 }
 
-//--------------------------------------------------------------
-void testApp::gotMessage(ofMessage msg){
-
-}
-
-//--------------------------------------------------------------
-void testApp::dragEvent(ofDragInfo dragInfo){ 
-
-}
