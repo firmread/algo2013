@@ -9,11 +9,18 @@
 
 ##References
 Here are some of the things we looked at in class today.
+
 Engineers and filmmakers working together on Tron - https://www.youtube.com/watch?feature=player_detailpage&v=JrCdMHUNznc#t=4235
+
 Ferrofluid soap bubbles by Kim Pimmel - https://vimeo.com/28304264
+
 Smoke particle music video by  Esteban Diácono - https://vimeo.com/6045312
+
 Real world smoke particles - https://vimeo.com/7640196
 
+
 Here are two pieces we didn't look at as part of a collab between Memo Atken and Quayola
+
 https://vimeo.com/38017188 - forms
+
 https://vimeo.com/38421611 - forms process
