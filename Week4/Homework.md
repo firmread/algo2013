@@ -1,5 +1,5 @@
 ##Non-Code:
-0) Take a video of real world particles.  Here's an example: https://vimeo.com/28732551
+0. Take a video of real world particles.  Here's an example: https://vimeo.com/28732551
 
 ##Code:
 1. If you didn't finish the John Whitney assignment from last week, just finish that one.
