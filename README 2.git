@@ -1,7 +1,0 @@
-Algorithmic Animation Fall 2013
-========
-
-Welcome to the fall semester of algo.  This repo will contain class files and examples we go over and will update as the course goes along throughout the semester.  Examples from these folders are meant to live in the root of the openframeworks 0.8 folder.  Navigate to the root of your oF folder and from there do a "git clone" of this repo.
-
-Description:
-This class will look at the fundamentals of animation and animated form through the lens of computation. Artists have always used different technology to animate - from early zoetropes to hand drawn etched film - and with programming, there is a new branch of a long tradition forming. We will focus on techniques for writing code to move objects in a compelling and life-like manner. For folks who are newer to code, this class will work as a gentle but serious introduction to the medium, for experts this will present new approaches and strategies for expression. In addition to looking at and working through code, we will be studying several pioneers of abstract animation, Norman McLaren, John Whitney, Oskar Fischinger, as well as modern day practitioners like Toshio Iwai and Masahiko Sato. Technically, the course will be taught using a series of code examples, tools and problems coded in openframeworks, a cross platform c++ toolkit for creative hacking. This is an advanced programming class, students should be very comfortable with reading and writing code.
