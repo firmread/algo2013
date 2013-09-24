@@ -12,7 +12,13 @@
 
 class TimePoint {
   public:
-    TimePoint();
+    TimePoint(){
+        cout << "Constructed!" << endl;
+    };
+    ~TimePoint(){
+        cout << "Denstructed!" << endl;
+    }
+    ;
     
     float x, y;
     float t;

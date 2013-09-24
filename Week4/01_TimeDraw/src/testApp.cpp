@@ -9,6 +9,9 @@ void testApp::setup(){
 	bIsRecording = false;
 	playbackStartTime = 0;
 	startTime = 0;
+    
+    TimePoint *myPointer = new TimePoint();
+    delete myPointer;
 }
 
 
@@ -117,7 +120,7 @@ ofPoint testApp::getPositionForTime(float time){
     // This function acts like a big modulus. The last element in our list (pointList.size()-1) is how long the whole drawing took.
     // We'll keep subtracting it from time until it's smaller than "time".  Now we can work with it on the right time scale. This also
     // allows it to loop!
-
+    
 	while (time > pointList[pointList.size()-1].t){
 		time -= pointList[pointList.size()-1].t;
 	}

@@ -8,6 +8,9 @@ void testApp::setup(){
 	
 	bIsRecording = false;
 	playbackStartTime = 0;
+    
+    cout << 5000 % 2234 <<  endl;
+    
 }
 
 //--------------------------------------------------------------
