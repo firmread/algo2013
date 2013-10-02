@@ -1,107 +1,94 @@
 #include "testApp.h"
 
+
+/**
+ * The formula we are following is a real gravitational equation
+ *  F = (( G * m1 * m2 ) / r^2) * r(dir)
+ * 
+ * Where:
+ *  G is a gravitational constant
+ *  m1 and m2 are the masses of 2 objects
+ *  r^2 is the distance between them squared
+ *  and r(dir) is a directional vector between the two objects. It is normalized
+ */
+
+
 //--------------------------------------------------------------
 void testApp::setup(){
+    
     ofSetVerticalSync(true);
     ofSetFrameRate(60);
-    ofBackground(255);
     
-    for (int i = 0; i < 1000; i++){
-        addParticle();
-    }
+    earth.pos = ofGetWindowSize() / 2;
+    earth.mass = 2;
+    
+    moon.mass = 3.0;
+    
+    moon.pos = ofVec2f( 100, 300 );
+    moon.vel = ofVec2f( 0, 2);
+    
+    ofSetCircleResolution(100);
+    
+    ofBackground( 0 );
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
     
-    // on every frame
-	// we reset the forces
-	// add in any forces on the particle
-	// perfom damping and
-	// then update
-	
-	for (int i=0; i < particleList.size(); i++){
-		particleList[i].resetForces();
-//		particleList[i].addForce( ofVec2f(0,0.04));  // gravity
-		particleList[i].addDampingForce();
-		particleList[i].update();
-	}
+    ofVec2f grav = earth.attract( moon );
+    
+    moon.applyForce( grav );
+    moon.update();
+    
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
-    
-    ofSetColor(0);
-    for (int i=0; i < particleList.size(); i++){
-        particleList[i].draw();
-    }
-}
-
-void testApp::addParticle() {
-    Particle myParticle;
-    
-    float vx = ofRandom(-4,4);
-    float vy = ofRandom(-4,4);
-    myParticle.setParams(300,300,vx, vy);
-    
-    // more interesting with diversity :)
-    // uncomment this:
-    //		myParticle.damping = ofRandom(0.01, 0.05);
-    particleList.push_back(myParticle);
+    earth.draw();
+    moon.draw();
 }
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
-    
+
 }
 
 //--------------------------------------------------------------
 void testApp::keyReleased(int key){
-    
+
 }
 
 //--------------------------------------------------------------
 void testApp::mouseMoved(int x, int y ){
-    
+
 }
 
 //--------------------------------------------------------------
 void testApp::mouseDragged(int x, int y, int button){
-    
+
 }
 
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button){
-    for (int i = 0; i < particleList.size(); i++){
-        //		float vx = ofRandom(-4,4);
-        //		float vy = ofRandom(-4,4);
-        
-        float circVal = ofRandom(TWO_PI);
-        
-        float vx = cos( sin(circVal) ) * ofRandom(0,4);
-        float vy = sin( sin(circVal) ) * ofRandom(0,4);
-        
-		particleList[i].setParams(mouseX,mouseY,vx, vy);
-        
-	}
+
 }
 
 //--------------------------------------------------------------
 void testApp::mouseReleased(int x, int y, int button){
-    
+
 }
 
 //--------------------------------------------------------------
 void testApp::windowResized(int w, int h){
-    
+
 }
 
 //--------------------------------------------------------------
 void testApp::gotMessage(ofMessage msg){
-    
+
 }
 
 //--------------------------------------------------------------
-void testApp::dragEvent(ofDragInfo dragInfo){
-    
+void testApp::dragEvent(ofDragInfo dragInfo){ 
+
 }

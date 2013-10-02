@@ -23,7 +23,7 @@ void Particle::addForce( ofVec2f force ){
 }
 
 void Particle::addDampingForce() {
-    frc = frc - vel * damping;
+    frc = frc - (vel * damping);
 }
 
 void Particle::resetForces() {

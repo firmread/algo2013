@@ -25,13 +25,13 @@ void Particle::update( const ofImage &img, ofVec2f mousePos ){
     newLoc = pos + dirToCursor * 50.0;
     
     
-//    float timeOffset = ofGetElapsedTimef() * 4.0;
-//    dirToCursor = mousePos - pos;
-//    float dist = dirToCursor.length() * 0.05;
-//    float sinOffset = sin( dist - timeOffset ) * 100.0;
-//    dirToCursor.normalize();
-//    
-//    newLoc = pos + dirToCursor * sinOffset;
+    float timeOffset = ofGetElapsedTimef() * 4.0;
+    dirToCursor = mousePos - pos;
+    float dist = dirToCursor.length() * 0.05;
+    float sinOffset = sin( dist - timeOffset ) * 100.0;
+    dirToCursor.normalize();
+    
+    newLoc = pos + dirToCursor * sinOffset;
     
     newLoc.x = ofClamp( newLoc.x, 0.0, img.width );
     newLoc.y = ofClamp( newLoc.y, 0.0, img.height );

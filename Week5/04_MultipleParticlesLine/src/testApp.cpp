@@ -9,6 +9,8 @@ void testApp::setup(){
 //    for (int i = 0; i < 1000; i++){
 //        addParticle();
 //    }
+    
+    ofSetBackgroundAuto(false);
 }
 
 //--------------------------------------------------------------
@@ -31,7 +33,13 @@ void testApp::update(){
 //--------------------------------------------------------------
 void testApp::draw(){
 
+    
+    
     ofFill();
+    
+    ofSetColor(255, 255, 255, 2);
+    ofRect( ofGetWindowRect() );
+    
     ofSetColor(0);
     for (int i=0; i < particleList.size(); i++){
         particleList[i].draw();

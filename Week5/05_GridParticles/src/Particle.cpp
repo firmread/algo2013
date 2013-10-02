@@ -19,14 +19,14 @@ Particle::Particle( ofVec2f position ) {
 
 void Particle::update( const ofImage &img ){
     
-    grayValue = img.getColor( pos.x, pos.y ).r;
+    grayValue = img.getColor( pos.x, pos.y ).g;
     radius = ((float)grayValue / 255.0) * 7.0;
     
-//    radius = 4;
+    radius = 4;
 }
 
 void Particle::draw() {
-//    ofSetColor( grayValue );
-    ofSetColor(255);
+    ofSetColor( grayValue );
+//    ofSetColor(255);
     ofCircle( pos, radius );
 }
