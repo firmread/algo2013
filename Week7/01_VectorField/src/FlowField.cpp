@@ -20,6 +20,7 @@ void FlowField::setup( int width, int height, int res ) {
     int cols = fieldWidth / resolution;
     int rows = fieldHeight / resolution;
     
+    // Make a big list of forces.  We will store them in a 2 dimensional vector.
     for( int y=0; y<rows; y++){
         VectorList myList;
         flowList.push_back( myList );
@@ -31,6 +32,7 @@ void FlowField::setup( int width, int height, int res ) {
     }
 }
 
+// Set all the forces in the field to random values
 void FlowField::setRandom() {
     for( int y=0; y<flowList.size(); y++){
         for( int x=0; x<flowList[y].size(); x++){
@@ -39,6 +41,7 @@ void FlowField::setRandom() {
     }
 }
 
+// Set all the forces in the field based on perlin noise
 void FlowField::setPerlin() {
     for( int y=0; y<flowList.size(); y++){
         for( int x=0; x<flowList[y].size(); x++){
@@ -62,6 +65,11 @@ void FlowField::drawVectorAt( const ofVec2f &vec, const ofVec2f &pos ) {
     drawVector( np, np + vec.normalized() * 10.0, 5, 3 );
 }
 
+/**
+ * This is a complicated one!  It's a translation of the one right out of the Cinder source, no need to understand it,
+ * but it's an interesting one to look at anyway!
+ * https://github.com/cinder/Cinder/blob/master/src/cinder/gl/gl.cpp line 915 if you're interested
+ */
 void FlowField::drawVector( const ofVec3f &start, const ofVec3f &end, float headLength, float headRadius ) {
 	const int NUM_SEGMENTS = 32;
 	float lineVerts[3*2];
