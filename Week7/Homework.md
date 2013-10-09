@@ -7,3 +7,6 @@ Advanced:
 
 3. Try to use ofxXmlSettings to save and load vector positions so that they are persistent when you close and reopen the application.
 http://www.openframeworks.cc/documentation/ofxXmlSettings/ofxXmlSettings.html
+
+##References
+Here is the video we watched on creativity http://www.youtube.com/watch?v=weIQIthC3Ks
