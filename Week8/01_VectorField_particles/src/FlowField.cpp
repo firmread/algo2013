@@ -25,7 +25,7 @@ void FlowField::setup( int width, int height, int res ) {
         flowList.push_back( myList );
         
         for( int x=0; x<rows; x++){
-            ofVec2f dir(10,0);
+            ofVec2f dir(0,0);
             flowList[y].push_back( dir );
         }
     }
@@ -43,7 +43,7 @@ void FlowField::setPerlin() {
     for( int y=0; y<flowList.size(); y++){
         for( int x=0; x<flowList[y].size(); x++){
             float noise = ofMap( ofNoise(x*0.05, y*0.05), 0, 1, 0, TWO_PI);
-            flowList[y][x].set( ofVec2f( cos(noise)*20, sin(noise)*20 ) );
+            flowList[y][x].set( ofVec2f( cos(noise) * 20.0, sin(noise) * 20.0 ) );
         }
     }
 }
@@ -53,15 +53,22 @@ void FlowField::update() {
         for( int x=0; x<flowList[y].size(); x++){
 //            flowList[y][x] *= 0.99;
             
-            if( flowList[y][x].length() < 1.0){
+            // don't let the force get too small
+            
+            float vecSize =flowList[y][x].length();
+            
+            if( vecSize < 1.0){
                 flowList[y][x].normalize();
+            }else if( vecSize > 20.0 ){
+                flowList[y][x].normalize() * 20.0;
             }
             
+            // lets also limit the max
         }
     }
 }
 
-ofVec2f FlowField::getForceAtPosition(ofVec2f pos) {
+ofVec2f FlowField::getForceAtPosition( ofVec2f pos ){
     float pctX = pos.x / fieldWidth;
     float pctY = pos.y / fieldHeight;
     
@@ -78,17 +85,6 @@ ofVec2f FlowField::getForceAtPosition(ofVec2f pos) {
 }
 
 void FlowField::addRepelForce(float x, float y, float radius, float strength) {
-    
-    float pctX = x / fieldWidth;
-    float pctY = y / fieldWidth;
-    
-    int cols = fieldWidth / resolution;
-    int rows = fieldHeight / resolution;
-    
-    int xVal = pctX * cols;
-    int yVal = pctY * rows;
-    
-    
     ofVec2f mousePos(x, y);
     
     for( int y=0; y<flowList.size(); y++){
@@ -110,16 +106,6 @@ void FlowField::addRepelForce(float x, float y, float radius, float strength) {
 }
 
 void FlowField::addAttractForce(float x, float y, float radius, float strength) {
-    
-    float pctX = x / fieldWidth;
-    float pctY = y / fieldWidth;
-    
-    int cols = fieldWidth / resolution;
-    int rows = fieldHeight / resolution;
-    
-    int xVal = pctX * cols;
-    int yVal = pctY * rows;
-    
     ofVec2f mousePos(x, y);
     
     for( int y=0; y<flowList.size(); y++){
@@ -141,16 +127,6 @@ void FlowField::addAttractForce(float x, float y, float radius, float strength) 
 }
 
 void FlowField::addCircularForce(float x, float y, float radius, float strength) {
-    
-    float pctX = x / fieldWidth;
-    float pctY = y / fieldWidth;
-    
-    int cols = fieldWidth / resolution;
-    int rows = fieldHeight / resolution;
-    
-    int xVal = pctX * cols;
-    int yVal = pctY * rows;
-    
     ofVec2f mousePos(x, y);
     
     for( int y=0; y<flowList.size(); y++){

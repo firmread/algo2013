@@ -2,53 +2,39 @@
 
 //--------------------------------------------------------------
 void testApp::setup(){
-    myField.setup( ofGetWindowWidth(), ofGetWindowHeight(), 20 );
-        
+    ofSeedRandom();
+    
+    pos = ofGetWindowSize() / 2;
+    dest = ofVec2f( ofRandomWidth(), ofRandomHeight() );
+    
+    car.setParams( pos, ofVec2f(10, -5) );
+    
     ofBackground(0);
-    
-    particleList.clear();
-    
-    for( int i=0; i<300; i++ ){
-        addParticle();
-    }
-}
-
-void testApp::addParticle() {
-    Particle part;
-    part.pos = ofVec2f( ofRandomWidth(), ofRandomHeight() );
-    
-    particleList.push_back( part );
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
     
-    for( int i=0; i<particleList.size(); i++ ){
-        particleList[i].applyForce( myField.getForceAtPosition(particleList[i].pos) * 0.005);
-        particleList[i].update();
-    }
+    car.seek( dest );
+    car.update();
     
-    myField.update();
+    if( car.pos.distance(dest) < 5){
+        dest = ofVec2f( ofRandomWidth(), ofRandomHeight() );
+    }
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
     ofSetColor(255);
-    myField.draw();
+    car.draw();
     
-    ofSetColor(0, 255, 255);
-    for( int i=0; i<particleList.size(); i++ ){
-        particleList[i].draw();
-    }
+    ofSetColor(255,0,0);
+    ofCircle( dest, 4 );
 }
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
-    if( key == '1'){
-        myField.setRandom( 20.0 );
-    }else if( key == '2' ){
-        myField.setPerlin();
-    }
+
 }
 
 //--------------------------------------------------------------
@@ -63,19 +49,12 @@ void testApp::mouseMoved(int x, int y ){
 
 //--------------------------------------------------------------
 void testApp::mouseDragged(int x, int y, int button){
-    
-    
-    if( button == OF_MOUSE_BUTTON_1 ){
-//        myField.addRepelForce(x, y, 100, 2.0);
-        myField.addCircularForce(x, y, 300, 2.0);
-    }else{
-        myField.addAttractForce(x, y, 100, 2.0);
-    }
+
 }
 
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button){
-    mouseDragged(x, y, button);
+
 }
 
 //--------------------------------------------------------------

@@ -3,14 +3,14 @@
 //--------------------------------------------------------------
 void testApp::setup(){
     myField.setup( ofGetWindowWidth(), ofGetWindowHeight(), 20 );
-        
-    ofBackground(0);
     
     particleList.clear();
     
     for( int i=0; i<300; i++ ){
         addParticle();
     }
+    
+    ofBackground(0);
 }
 
 void testApp::addParticle() {
@@ -22,13 +22,12 @@ void testApp::addParticle() {
 
 //--------------------------------------------------------------
 void testApp::update(){
+    myField.update();
     
     for( int i=0; i<particleList.size(); i++ ){
-        particleList[i].applyForce( myField.getForceAtPosition(particleList[i].pos) * 0.005);
+        particleList[i].applyForce( myField.getForceAtPosition(particleList[i].pos ) * 0.005 );
         particleList[i].update();
     }
-    
-    myField.update();
 }
 
 //--------------------------------------------------------------
@@ -48,6 +47,10 @@ void testApp::keyPressed(int key){
         myField.setRandom( 20.0 );
     }else if( key == '2' ){
         myField.setPerlin();
+    }else if( key == 'r' ){
+        for( int i=0; i<particleList.size(); i++ ){
+            particleList[i].pos = ofVec2f( ofRandomWidth(), ofRandomHeight() );
+        }
     }
 }
 

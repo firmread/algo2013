@@ -50,5 +50,5 @@ void Particle::update( const ofImage &img, ofVec2f mousePos ){
 
 void Particle::draw() {
     ofSetColor( 255 );
-    ofCircle(pos, radius );
+    ofCircle(pos, 4 );
 }
