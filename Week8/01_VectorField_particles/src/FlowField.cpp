@@ -29,6 +29,9 @@ void FlowField::setup( int width, int height, int res ) {
             flowList[y].push_back( dir );
         }
     }
+    
+    ofImage mImg;
+    mImg.setColor(<#int x#>, <#int y#>, <#const ofColor_<unsigned char> &color#>)
 }
 
 void FlowField::setRandom( const float &strength ) {
