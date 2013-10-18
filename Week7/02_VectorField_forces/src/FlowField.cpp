@@ -24,7 +24,7 @@ void FlowField::setup( int width, int height, int res ) {
         VectorList myList;
         flowList.push_back( myList );
         
-        for( int x=0; x<rows; x++){
+        for( int x=0; x<cols; x++){
             ofVec2f dir(10,0);
             flowList[y].push_back( dir );
         }
@@ -174,6 +174,10 @@ void FlowField::draw() {
         for( int x=0; x<flowList[y].size(); x++){
             ofVec2f np( x*resolution, y*resolution );
             drawVectorAt( flowList[y][x], np, flowList[y][x].length() );
+            
+            
+            
+            ofVec2f tmpPos(x*resolution, y*resolution);
         }
     }
 }

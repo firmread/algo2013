@@ -34,3 +34,4 @@ class FlowField {
     vector<VectorList>  flowList;
     int                 fieldWidth, fieldHeight, resolution;
 };
+

@@ -24,7 +24,8 @@ void testApp::addParticle() {
 void testApp::update(){
     
     for( int i=0; i<particleList.size(); i++ ){
-        particleList[i].applyForce( myField.getForceAtPosition(particleList[i].pos) * 0.005);
+        ofVec2f forceAtPos = myField.getForceAtPosition(particleList[i].pos) * 0.005;
+        particleList[i].applyForce( forceAtPos );
         particleList[i].update();
     }
     

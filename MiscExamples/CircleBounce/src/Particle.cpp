@@ -16,6 +16,7 @@ void Particle::update(ofVec2f circleCenter, float circleRadius) {
     pos += vel;
     
     // This is the code that bounces off of a curved surface.  It's hard to understand, but feel free to use it if you like!
+    // This is adapted from: http://rectangleworld.com/blog/archives/358
     if( pos.distance(circleCenter) > circleRadius ){
         ofVec2f tmpPos = pos - circleCenter;
         pos = tmpPos.normalized() * circleRadius + circleCenter;
