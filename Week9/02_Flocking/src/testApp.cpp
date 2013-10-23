@@ -2,38 +2,31 @@
 
 //--------------------------------------------------------------
 void testApp::setup(){
-    
     ofSetVerticalSync(true);
     ofSetFrameRate(60);
-    
-    int i=0;
-    while( ++i < 100 ){
-        addParticle();
-    }
-    
     ofBackground(0);
-}
-
-void testApp::addParticle(){
-    ofVec2f initVel( ofRandom(-5,5), ofRandom(-5,5) );
     
-    Boid b( ofGetWindowSize() * 0.5, initVel );
-    boidList.push_back( b );
+    ofEnableDepthTest();
+    
+    flocker.addParticle( 500 );
+    
+    myCam.setDistance(400);
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
-    for( int i=0; i<boidList.size(); i++ ){
-        boidList[i].pullToCenter( ofGetWindowSize() * 0.5 );
-        boidList[i].update();
-    }
+    flocker.applyForces(80, 0.4, 0.75);
+    flocker.update();
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
-    for( int i=0; i<boidList.size(); i++ ){
-        boidList[i].draw();
-    }
+    
+    myCam.begin();
+    
+    flocker.draw();
+    
+    myCam.end();
 }
 
 //--------------------------------------------------------------
