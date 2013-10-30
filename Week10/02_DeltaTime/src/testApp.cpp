@@ -2,29 +2,38 @@
 
 //--------------------------------------------------------------
 void testApp::setup(){
-    
     ofSetVerticalSync(true);
     ofSetFrameRate(60);
     
     ofBackground(0);
     
-    flocker.addParticle( 1000 );
+    lastTime = ofGetElapsedTimef();
+    timeScale = 1.0;
+    
+    for( int i=0; i<50; i++ ){
+        Particle p;
+        p.pos = ofVec2f( ofRandomWidth(), ofRandomHeight() );
+//        p.vel = ofVec2f( ofRandom(-1, 1), ofRandom(-1, 1) ) * 5;
+        p.vel = ofVec2f(10,0);
+        particleList.push_back( p );
+    }
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
+    float dt = ofGetElapsedTimef() - lastTime;
+    lastTime = ofGetElapsedTimef();
     
-    flocker.applyForces(80, 0.4, 0.75);
-    flocker.update();
+    for( int i=0; i<particleList.size(); i++ ){
+        particleList[i].update( dt * timeScale );
+    }
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
-    
-    ofPushMatrix();{
-        ofTranslate( ofGetWindowSize() / 2.0 );
-        flocker.draw();
-    }ofPopMatrix();
+    for( int i=0; i<particleList.size(); i++ ){
+        particleList[i].draw();
+    }
 }
 
 //--------------------------------------------------------------
@@ -39,7 +48,7 @@ void testApp::keyReleased(int key){
 
 //--------------------------------------------------------------
 void testApp::mouseMoved(int x, int y ){
-
+    timeScale = ofMap( x, 0, ofGetWindowWidth(), -3, 3 );
 }
 
 //--------------------------------------------------------------
@@ -49,7 +58,7 @@ void testApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button){
-    flocker.addParticle( 50 );
+
 }
 
 //--------------------------------------------------------------

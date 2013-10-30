@@ -13,9 +13,18 @@ FlockController::FlockController(){
 
 void FlockController::addParticle( int numParticles ){
     for( int i=0; i<numParticles; i++ ){
-        float rf = ofRandom(0, TWO_PI);
         
-        ofVec3f randVec = ofVec3f( cos(rf), sin(rf), ofRandom(-1, 1) );
+        // I was getting bad results, so I looked up uniform sphere distribution and got this: http://mathworld.wolfram.com/SpherePointPicking.html
+        float phi = ofRandom( 0, TWO_PI );
+		float costheta = ofRandom( -1.0f, 1.0f );
+		
+		float rho = sqrt( 1.0f - costheta * costheta );
+		float x = rho * cos( phi );
+		float y = rho * sin( phi );
+		float z = costheta;
+		
+        ofVec3f randVec(x, y, z);
+        
 		ofVec3f pos = randVec * ofRandom( 100.0f, 600.0f );
 		ofVec3f vel = -randVec;
         
@@ -48,8 +57,8 @@ void FlockController::applyForces( float zoneRadius, float separateThresh, float
                 // seperation - The boids are too close to each other.  Apply a separation force;
                 if( pct < separateThresh){
                     
-                    float str = 1.0 - ofMap(pct, 0.0, separateThresh, 0.0, 1.0);
-                    ofVec2f force = dir.normalized() * str * 0.03;
+                    float adjustedPct = 1.0 - ofMap(pct, 0.0, separateThresh, 0.0, 1.0);
+                    ofVec2f force = dir.normalized() * adjustedPct * 0.03;
                     b1->applyForce( force );
                     b2->applyForce( -force );
                     
@@ -61,9 +70,10 @@ void FlockController::applyForces( float zoneRadius, float separateThresh, float
 
                 // alignment - The boids are a medium distance from each other.  Apply an alignment force.
                 else if( pct < alignThresh ){
-                    float threshDelta		= alignThresh - separateThresh;
-					float adjustedPercent	= ( pct - separateThresh )/threshDelta;
-					float F					= ( 1.0f - ( cos( adjustedPercent * TWO_PI ) * -0.5f + 0.5f ) ) * 0.005;
+                    float adjustedPct = 1.0 - ofMap(pct, separateThresh, alignThresh, 0.0, 1.0);
+                    float F = adjustedPct * 0.005;
+                    
+//					float F					= ( 1.0f - ( cos( str * TWO_PI ) * -0.5f + 0.5f ) ) * 0.005;
                     
                     b1->applyForce( b2->vel.normalized() * F );
                     b2->applyForce( b1->vel.normalized() * F );
@@ -73,8 +83,8 @@ void FlockController::applyForces( float zoneRadius, float separateThresh, float
                 else{
                     float attractStrength = 0.01;
                     
-                    float str = ofMap(pct, alignThresh, 1.0, 0.0, 1.0);
-                    ofVec2f force = dir.normalized() * str * 0.03;
+                    float adjustedPct = ofMap(pct, alignThresh, 1.0f, 0.0f, 1.0f);
+                    ofVec2f force = dir.normalized() * adjustedPct * attractStrength;
                     b1->applyForce( -force );
                     b2->applyForce( force );
                     

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ofMain.h"
-#include "FlockController.h"
 
 class testApp : public ofBaseApp{
 
@@ -20,7 +19,6 @@ class testApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-    void addParticle();
-    
-    FlockController flocker;
+    ofVec2f lookVec, lSide, rSide;
+    float angle;
 };

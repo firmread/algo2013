@@ -16,11 +16,19 @@ void Particle::applyForce(ofVec2f force){
     accel += (force / mass);
 }
 
-void Particle::update(){
+void Particle::update( float dt ){
     vel += accel;
-    pos += vel;
+    pos += (vel * dt * 50);
     
-    vel*= 0.97;
+    if( pos.x < 0 || pos.x > ofGetWindowWidth() ){
+        vel.x *= -1;
+    }
+    
+    if( pos.y < 0 || pos.y > ofGetWindowHeight() ){
+        vel.y *= -1;
+    }
+    
+//    vel*= 0.97;
     
     accel.set(0);
 }

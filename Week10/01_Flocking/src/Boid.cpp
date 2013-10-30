@@ -15,7 +15,7 @@ Boid::Boid() {
 Boid::Boid( ofVec3f position, ofVec3f velocity) {
     pos = position;
     vel = velocity;
-    damping = 0.99;
+    damping = 0.98;
 }
 
 void Boid::applyForce( ofVec3f force ){
@@ -32,7 +32,7 @@ void Boid::pullToCenter( ofVec3f center ){
     
     if( dir.length() > maxDistance ) {
         dir.normalize();
-        vel -= dir * ( ( dist - maxDistance ) * 0.0001 );
+        vel -= dir * ( ( dist - maxDistance ) * 0.0001f );
     }
 }
 
@@ -54,5 +54,10 @@ void Boid::update(){
 }
 
 void Boid::draw(){
+    ofSetColor(255);
     ofCircle(pos, 2);
+    
+    ofSetColor( 255, 0, 0 );
+    ofLine( pos, pos - vel*5.0);
+    
 }
