@@ -9,9 +9,6 @@ void testApp::setup(){
     rSide = lookVec.rotated(angle * 0.5);
     
     ofBackground(0);
-    
-    ofDegToRad(<#float degrees#>)
-    
 }
 
 //--------------------------------------------------------------
