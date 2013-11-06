@@ -42,13 +42,15 @@ void FlowField::setRandom( const float &strength ) {
 void FlowField::setPerlin() {
     for( int y=0; y<flowList.size(); y++){
         for( int x=0; x<flowList[y].size(); x++){
-            float noise = ofMap( ofNoise(x*0.05, y*0.05), 0, 1, 0, TWO_PI);
+            float noise = ofMap( ofNoise(x*0.05, y*0.05, ofGetElapsedTimef() * 0.5), 0, 1, 0, TWO_PI);
             flowList[y][x].set( ofVec2f( cos(noise) * 20.0, sin(noise) * 20.0 ) );
         }
     }
 }
 
 void FlowField::update() {
+    setPerlin();
+    
     for( int y=0; y<flowList.size(); y++){
         for( int x=0; x<flowList[y].size(); x++){
 //            flowList[y][x] *= 0.99;
