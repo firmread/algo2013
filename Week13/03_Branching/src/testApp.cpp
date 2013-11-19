@@ -2,68 +2,52 @@
 
 //--------------------------------------------------------------
 void testApp::setup(){
-    k = 0.05;
-    restLength = 200.0;
-    
-    anchor  = ofVec2f( ofGetWindowWidth() / 2, 10);
-    ball    = ofVec2f( ofGetWindowWidth() / 2, restLength+50);
-    
-    bDragging = false;
-    
-    ofSetFrameRate(60.0);
-    ofSetVerticalSync( true );
     ofBackground(0);
+    generation = 0;
 }
-
-/**
- *  We're working with Hookes law here http://en.wikipedia.org/wiki/Hooke's_law
- *  F = -k * x;
- */
 
 //--------------------------------------------------------------
 void testApp::update(){
-    
-    if( bDragging ){
-        return;
-    }
-    
-    ofVec2f force = ball - anchor;  // the direction
-    float len = force.length();
-    float stretchLength = len - restLength;
-    
-    
-    force.normalize();
-    force *= -1 * k * stretchLength;
-    
-    applyForce( force );
-    applyForce( ofVec2f(0,1.0) );
-    
-    
-    vel += acc;
-    vel *= 0.95;
-    
-    ball += vel;
-    
-    acc *= 0;
-    
-    ofMap 
+
 }
 
-void testApp::applyForce( ofVec2f force ) {
-    acc += force;
+void testApp::branch( float length ) {
+    ofPushMatrix();
+    ofLine( ofVec2f(0,0), ofVec2f(0, -length) );
+    ofTranslate( 0, -length );
+    
+    generation++;
+    
+    float noise = ofNoise( generation, ofGetElapsedTimef() * 0.1 );
+    
+    if( length > 2 ){
+        ofPushMatrix();{
+            ofRotate( 45 + theta + noise * 10-5 );
+            branch( length * 0.666 );
+        }ofPopMatrix();
+        
+        ofPushMatrix();{
+            ofRotate( -45 + theta - noise * 10-5 );
+            branch( length * 0.666 );
+        }ofPopMatrix();
+    }
+    
+    ofPopMatrix();
+    
+    generation--;
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
-    ofLine( anchor, ball );
-    
-    ofCircle( anchor, 10 );
-    ofCircle( ball, 20 );
+    ofPushMatrix();{
+        ofTranslate( ofGetWindowWidth()/2, ofGetWindowHeight() );
+        branch( 200 );
+    }ofPopMatrix();
 }
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
-    applyForce( ofVec2f(0.5, 0) );
+
 }
 
 //--------------------------------------------------------------
@@ -73,29 +57,22 @@ void testApp::keyReleased(int key){
 
 //--------------------------------------------------------------
 void testApp::mouseMoved(int x, int y ){
-
+    theta = ofMap(x, 0, ofGetWindowWidth(), -180, 180);
 }
 
 //--------------------------------------------------------------
 void testApp::mouseDragged(int x, int y, int button){
-    if( bDragging ){
-        ball.set( x, y );
-    }
+
 }
 
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button){
-    
-    if( ofVec2f(x, y).distance(ball) < 20 ){
-        ball.set( x, y );
-        bDragging = true;
-        vel *= 0;
-    }
+
 }
 
 //--------------------------------------------------------------
 void testApp::mouseReleased(int x, int y, int button){
-    bDragging = false;
+
 }
 
 //--------------------------------------------------------------
