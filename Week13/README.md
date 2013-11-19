@@ -17,6 +17,7 @@ Writing our own factorial function:
 The coastline Paradox
 --------
 http://en.wikipedia.org/wiki/Coastline_paradox
+
 http://www.youtube.com/watch?v=I_rw-AJqpCM
 
 Benoit B Mandelbrot
@@ -30,5 +31,7 @@ http://www.complexification.net/gallery/machines/substrate/index.php
 Variations on a theme:
 --------
 https://vimeo.com/11382470
+
 https://vimeo.com/11590284
+
 https://vimeo.com/9481952
