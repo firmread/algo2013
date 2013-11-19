@@ -1,13 +1,13 @@
 ##Code:
 1. In class we bounced a particle between two side by side screens.  Bounce a particle between 4 screens arranged like so:
 
------------------
-|       |       |
-|   1   |   2   |
-|-------|-------|
-|       |       |
-|   3   |   4   |
------------------
+	-----------------
+	|       |       |
+	|   1   |   2   |
+	|-------|-------|
+	|       |       |
+	|   3   |   4   |
+	-----------------
 
 Hint: It's possible to set a default position for the actual oF window by calling ofSetWindowPosition().
 

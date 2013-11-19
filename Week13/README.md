@@ -6,13 +6,13 @@ Writing our own factorial function:
 ------
 !n = n * !(n-1);
 
-int testApp::factorial( int n ){
-    if( n == 1 ){
-        return 0;
-    }else{
-        return (n * factorial( n-1 ));
-    }   
-}
+	int testApp::factorial( int n ){
+	    if( n == 1 ){
+	        return 0;
+	    }else{
+	        return (n * factorial( n-1 ));
+	    }   
+	}
 
 The coastline Paradox
 --------
