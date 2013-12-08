@@ -42,7 +42,7 @@ void FlockController::applyForces( float zoneRadius, float separateThresh, float
         for( b2; b2!=boidList.end(); ++b2 ){
             
             // setup some vars
-            ofVec2f dir = b1->pos - b2->pos;
+            ofVec3f dir = b1->pos - b2->pos;
             float lenSq = dir.lengthSquared();
             
             // We only want a boid to act on another boid if it's with zoneRadiusSq.

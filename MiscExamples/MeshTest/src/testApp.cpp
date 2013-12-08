@@ -12,16 +12,16 @@ void testApp::setup(){
     // Typically we think of UVs in terms of 0-1, but of defines them as 0-imageWidth
         
     mesh.addVertex( ofVec3f(0,100,0) );     // make a new vertex
-    mesh.addTexCoord( ofVec2f(0,h) );       // these are our UV coords
+    mesh.addTexCoord( ofVec2f(0,h/2) );       // these are our UV coords
     
     mesh.addVertex( ofVec3f(0,0,0) );       // make a new vertex
     mesh.addTexCoord( ofVec2f(0,0) );       // these are our UV coords
     
     mesh.addVertex( ofVec3f(100,0,0) );     // make a new vertex
-    mesh.addTexCoord( ofVec2f(w,0) );       // these are our UV coords
+    mesh.addTexCoord( ofVec2f(w/2,0) );       // these are our UV coords
     
     mesh.addVertex( ofVec3f(100,100,0) );   // make a new vertex
-    mesh.addTexCoord( ofVec2f(w,h) );       // these are our UV coords
+    mesh.addTexCoord( ofVec2f(w/2,h/2) );       // these are our UV coords
     
     mesh.addIndex( 0 );
     mesh.addIndex( 1 );
@@ -50,7 +50,7 @@ void testApp::draw(){
     
     ofPushMatrix();
     
-    ofTranslate( ofGetWindowSize() / 2 );
+    ofTranslate( ofGetWindowSize() / 2);
     ofRotateY( ofGetElapsedTimef() * 50 );
     ofTranslate( ofVec2f(-50, -50) );
     
